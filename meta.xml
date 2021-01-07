@@ -1,5 +1,5 @@
 <meta>
-	<info author="Tekken (Einheit-101, Saml1er)" description="Attach Elements to bones (a better 'bonne_attach' resource)" type="script" version="1.0.1" />
+	<info author="Tekken" description="Attach Elements to bones (a better 'bonne_attach' resource)" type="script" version="1.0.1" />
 	
 	<script src="server.lua" type="server"/>
 	<script src="client.lua" type="client"/>
