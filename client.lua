@@ -6,8 +6,7 @@ local _getElementBoneMatrix = getElementBoneMatrix;
 local _setElementMatrix = setElementMatrix;
 local _isElementOnScreen = isElementOnScreen;
 local _setElementPosition = setElementPosition;
-
-local boneMat, sroll, croll, spitch, cpitch, syaw, cyaw, rotMat, finalMatrix = {}, false, false, false, false, false, false, {}, false;
+local sroll, croll, spitch, cpitch, syaw, cyaw, boneMat, rotMat, finalMatrix = false, false, false, false, false, false, {}, {}, {};
 local boneMatOne = false;
 local boneMatTwo = false;
 local boneMatTree = false;
@@ -36,6 +35,9 @@ local rotMatTwoTree = false;
 local rotMatTreeOne = false;
 local rotMatTreeTwo = false;
 local rotMatTreeTree = false;
+local FOR = false;
+local FIVE = false;
+local SIX = false;
 
 
 addEvent("sync_attachements", true);
@@ -106,23 +108,22 @@ addEventHandler("onClientPedsProcessed", root, function()
 			rotMatTreeOne = rotMatTree[1];
 			rotMatTreeTwo = rotMatTree[2];
 			rotMatTreeTree = rotMatTree[3];
-
+			FOR = v[4];
+			FIVE = v[5];
+			SIX = v[6];
 			finalMatrix = {
 				{boneMatTwoOne * rotMatOneTwo + boneMatOneOne * rotMatOneOne + rotMatOneTree * boneMatTreeOne,
 				boneMatTreeTwo * rotMatOneTree + boneMatOneTwo * rotMatOneOne + boneMatTwoTwo * rotMatOneTwo,
 				boneMatTwoTree * rotMatOneTwo + boneMatTreeTree * rotMatOneTree + rotMatOneOne * boneMatOneTree, 0},
-				
 				{rotMatTwoTree * boneMatTreeOne + boneMatTwoOne * rotMatTwoTwo + rotMatTwoOne * boneMatOneOne,
 				boneMatTreeTwo * rotMatTwoTree + boneMatTwoTwo * rotMatTwoTwo + boneMatOneTwo * rotMatTwoOne,
 				rotMatTwoOne * boneMatOneTree + boneMatTreeTree * rotMatTwoTree + boneMatTwoTree * rotMatTwoTwo, 0},
-
 				{boneMatTwoOne * rotMatTreeTwo + rotMatTreeTree * boneMatTreeOne + rotMatTreeOne * boneMatOneOne,
 				boneMatTreeTwo * rotMatTreeTree + boneMatTwoTwo * rotMatTreeTwo + rotMatTreeOne * boneMatOneTwo,
 				rotMatTreeOne * boneMatOneTree + boneMatTreeTree * rotMatTreeTree + boneMatTwoTree * rotMatTreeTwo, 0},
-
-				{v[4] * boneMatOneOne + v[5] * boneMatTwoOne + v[6] * boneMatTreeOne + boneMatForOne,
-				v[4] * boneMatOneTwo + v[5] * boneMatTwoTwo + v[6] * boneMatTreeTwo + boneMatForTwo,
-				v[4] * boneMatOneTree + v[5] * boneMatTwoTree + v[6] * boneMatTreeTree + boneMatForTree, 1}
+				{FOR * boneMatOneOne + FIVE * boneMatTwoOne + SIX * boneMatTreeOne + boneMatForOne,
+				FOR * boneMatOneTwo + FIVE * boneMatTwoTwo + SIX * boneMatTreeTwo + boneMatForTwo,
+				FOR * boneMatOneTree + FIVE * boneMatTwoTree + SIX * boneMatTreeTree + boneMatForTree, 1}
 			};
 			_setElementMatrix(elm, finalMatrix);
 		else
