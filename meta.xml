@@ -1,8 +1,8 @@
 <meta>
-	<info author="Tekken (Einheit-101, Saml1er, majqq)" description="Attach Elements to bones (a better 'bonne_attach' resource)" type="script" version="1.2.0" />
+	<info author="Tekken (Einheit-101, Saml1er, majqq)" description="Attach Elements to peds bones (a better 'bonne_attach' resource)" type="script" version="1.3.0" />
 	
 	<script src="server.lua" type="server"/>
-	<script src="client.lua" type="client"/>
+	<script src="client.lua" type="client" cache="false"/>
 	
 	<export function="attachElementToBone" type="server" />
 	<export function="detachElementFromBone" type="server" />

@@ -1,22 +1,22 @@
 local Attachemenets = {};
 
+local elm = isElement;
+local m_rad = math.rad;
+local tonr = tonumber;
+
 addEvent("sync_newcomeplayer", true);
 
-function attachElementToBone(element, ped, bone, offX, offY, offZ, offrx, offry, offrz)
-	if isElement(element) and isElement(ped) and tonumber(bone) then
-		local offX = tonumber(offX) or 0;
-		local offY = tonumber(offY) or 0;
-		local offZ = tonumber(offZ) or 0;
-		local offrx = math.rad(offrx) or 0;
-		local offry = math.rad(offry) or 0;
-		local offrz = math.rad(offrz) or 0;
-		Attachemenets[#Attachemenets + 1] = {element, ped, bone, offX, offY, offZ, offrx, offry, offrz};
-		triggerClientEvent(root, "sync_attachements", resourceRoot, element, ped, bone, offX, offY, offZ, offrx, offry, offrz);
+function attachElementToBone(element, ped, bone, offx, offy, offz, offrx, offry, offrz)
+	if elm(element) and elm(ped) and tonr(bone) then
+		local table = {element, ped, bone, tonr(offx) or 0, tonr(offy) or 0, tonr(offz) or 0, m_rad(offrx) or 0, m_rad(offry) or 0, m_rad(offrz) or 0};
+		setElementCollisionsEnabled(element, false);
+		Attachemenets[#Attachemenets + 1] = table;
+		triggerClientEvent(root, "sync_attachements", resourceRoot, table);
 	end
 end
 
 function detachElementFromBone(element)
-	if isElement(element) then
+	if elm(element) then
 		for i = 1, #Attachemenets do
 			local v = Attachemenets[i];
 			if v[1] == element then
