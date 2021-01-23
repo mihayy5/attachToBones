@@ -2,6 +2,7 @@ local AttachementsTable = {};
 
 local m_sin = math.sin;
 local m_cos = math.cos;
+local m_rad = math.rad;
 local elm = isElement;
 local tonr = tonumber;
 local _getElementBoneMatrix = getElementBoneMatrix;
