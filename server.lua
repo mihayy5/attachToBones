@@ -6,6 +6,13 @@ local tonr = tonumber;
 local m_sin = math.sin;
 local m_cos = math.cos;
 
+local validElementTypes = {
+	["object"] = true,
+	["marker"] = true,
+	["light"] = true,
+	["searchlight"] = true
+}
+
 addEvent("sync_newcomeplayer", true);
 
 local function calculateMatrix(orx, ory, orz)
@@ -45,7 +52,7 @@ function detachElementFromBone(element)
 end
 
 addEventHandler("onElementDestroy", root, function()
-	if Attachemenets[source] then
+	if Attachemenets[source] and validElementTypes[getElementType(source)] and getResourceState(resource) ~= "stopping" then
 		Attachemenets[source] = nil;
 		triggerClientEvent(root, "sync_detachements", resourceRoot, source);
 	end
