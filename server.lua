@@ -45,7 +45,7 @@ function detachElementFromBone(element)
 end
 
 addEventHandler("onElementDestroy", root, function()
-	if Attachemenets[source] then
+	if Attachemenets[source] and getResourceState(resource) ~= "stopping" then
 		Attachemenets[source] = nil;
 		triggerClientEvent(root, "sync_detachements", resourceRoot, source);
 	end
